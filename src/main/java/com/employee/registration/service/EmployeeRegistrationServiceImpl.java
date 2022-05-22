@@ -20,6 +20,12 @@ import com.employee.registration.utils.Constants;
 
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * @author Avinash Gurumurthy
+ * 
+ * Implementation class for Employee Service
+ *
+ */
 @Service
 @Log4j2
 public class EmployeeRegistrationServiceImpl implements EmployeeRegistrationService {
@@ -42,6 +48,7 @@ public class EmployeeRegistrationServiceImpl implements EmployeeRegistrationServ
 			DepartmentModel deptEntity = deptRepository.findById(employee.getDepartment()).get();
 			empEntity.setDepartment(deptEntity);
 			employeeRepository.save(empEntity);
+			log.info("Employee Successfully registerd with num {} ",employee.getEmployeeNum());
 		}catch (BusinessValidationException e) {
 			throw e;
 		}catch (Exception e) {
@@ -57,9 +64,11 @@ public class EmployeeRegistrationServiceImpl implements EmployeeRegistrationServ
 		try {
 			Optional<EmployeeModel> employeeObj = employeeRepository.findById(employeeNum);
 			if(!employeeObj.isPresent()) {
+				log.info("Unable to find employee with num {} ",employeeNum);
 				throw new ResourceNotFoundException(String.format(Constants.EMP_FETCH_ERR_BY_NUM, employeeNum));
 			}else {
 				response = new Employee(employeeObj.get());
+				log.info("Employee Successfully retrieved with num {} ",employeeNum);
 			}
 		}catch (ResourceNotFoundException e) {
 			throw e;
@@ -76,10 +85,12 @@ public class EmployeeRegistrationServiceImpl implements EmployeeRegistrationServ
 		try {
 			List<EmployeeModel> employeeObjs = employeeRepository.findAllByEmployeeNameOrderByEmployeeNumAsc(employeeName);
 			if(employeeObjs == null || employeeObjs.isEmpty()) {
+				log.info("Unable to find employees with name {} ",employeeName);
 				throw new ResourceNotFoundException(String.format(Constants.EMP_FETCH_ERR_BY_NAME, employeeName));
 			}else {
 				Function<EmployeeModel, Employee> departmentConstructor = (empModel) -> new Employee(empModel);
 				response = employeeObjs.stream().map(departmentConstructor).collect(Collectors.toList());
+				log.info("Employees Successfully retrieved with name {} ",employeeName);
 			}
 		}catch (ResourceNotFoundException e) {
 			throw e;
@@ -99,6 +110,7 @@ public class EmployeeRegistrationServiceImpl implements EmployeeRegistrationServ
 			DepartmentModel deptEntity = deptRepository.findById(employee.getDepartment()).get();
 			empEntity.setDepartment(deptEntity);
 			employeeRepository.save(empEntity);
+			log.info("Employee details successfully saved with num {} ",employee.getEmployeeNum());
 		}catch (BusinessValidationException e) {
 			throw e;
 		}catch (Exception e) {
@@ -117,6 +129,7 @@ public class EmployeeRegistrationServiceImpl implements EmployeeRegistrationServ
 			DepartmentModel deptEntity = deptRepository.findById(employee.getDepartment()).get();
 			empEntity.setDepartment(deptEntity);
 			employeeRepository.save(empEntity);
+			log.info("Employee details successfully saved with num {} ",employee.getEmployeeNum());
 		}catch (BusinessValidationException e) {
 			throw e;
 		}catch (Exception e) {
@@ -133,7 +146,8 @@ public class EmployeeRegistrationServiceImpl implements EmployeeRegistrationServ
 			Employee emp = new Employee();
 			emp.setEmployeeNum(employeeNum);
 			validationService.validateEmployeeForDeletion(employeeNum);
-			employeeRepository.deleteById(employeeNum);;
+			employeeRepository.deleteById(employeeNum);
+			log.info("Employee details successfully deleted with num {} ",employeeNum);
 		}catch (Exception e) {
 			log.error("Error while deleting employee {} ",e.getMessage());
 			throw e;

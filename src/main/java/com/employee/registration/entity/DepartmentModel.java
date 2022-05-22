@@ -8,6 +8,12 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @author Avinash Gurumurthy
+ * 
+ * Entity model class for Department Table
+ *
+ */
 @Data
 @Entity
 @Table(name = "DEPARTMENT")

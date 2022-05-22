@@ -9,6 +9,11 @@ import com.employee.registration.utils.Constants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @author Avinash Gurumurthy
+ * DTO Class for Employee Object to respond to UI
+ *
+ */
 @Data
 @NoArgsConstructor
 public class Employee {

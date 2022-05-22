@@ -1,5 +1,9 @@
 package com.employee.registration.utils;
 
+/**
+ * @author Avinash Gurumurthy
+ *
+ */
 public interface Constants {
 	
 	String SUCCESS = "Success";

@@ -2,6 +2,10 @@ package com.employee.registration.exception;
 
 import lombok.Getter;
 
+/**
+ * @author Avinash Gurumurthy
+ *
+ */
 @Getter
 public class BusinessValidationException extends Exception {
 

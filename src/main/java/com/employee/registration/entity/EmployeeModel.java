@@ -12,6 +12,12 @@ import com.employee.registration.dto.Employee;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @author Avinash Gurumurthy
+ * 
+ * Entity model class for Employee Table
+ *
+ */
 @Data
 @Entity
 @Table(name = "EMPLOYEE")

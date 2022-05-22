@@ -15,6 +15,12 @@ import com.employee.registration.repository.DepartmentRepository;
 import lombok.extern.log4j.Log4j2;
 
 
+/**
+ * @author Avinash Gurumurthy
+ * 
+ * Implementation class for Department Service
+ *
+ */
 @Service
 @Log4j2
 public class DepartmentServiceImpl implements DepartmentService {

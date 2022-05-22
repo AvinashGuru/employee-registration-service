@@ -19,6 +19,12 @@ import com.employee.registration.utils.Constants;
 
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * @author Avinash Gurumurthy
+ * 
+ * Centralized exception handler class to handle all possible exceptions occurring from application and respond with proper message
+ *
+ */
 @ControllerAdvice
 @Log4j2
 public class ExceptionHandlers  {
@@ -47,7 +53,7 @@ public class ExceptionHandlers  {
 		log.error("Constraint validation error -> {}",bodyOfResponse);
 		List<String> splitedVals = Arrays.asList(bodyOfResponse.split(","));
 		String newRespBody = splitedVals.stream().map( resp -> resp.split(": ")[1]).collect(Collectors.joining(" , "));
-		return new ResponseEntity<>(new ResponseDTO(Constants.ERROR, newRespBody), HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<>(new ResponseDTO(Constants.ERROR, newRespBody), HttpStatus.BAD_REQUEST);
 	}
 	
 	@ExceptionHandler(value = { Exception.class })
