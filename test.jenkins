@@ -14,7 +14,7 @@ pipeline {
 
       steps {
 
-        sh '''
+        bat '''
 
           java -version
 
@@ -24,19 +24,13 @@ pipeline {
 
     }
 
-    stage('cat README') {
-
-      when {
-
-        branch "feature*"
-
-      }
+    stage('clean install') {
 
       steps {
 
-        sh '''
+        bat '''
 
-          cat README.md
+          mvn clean install
 
         '''
 
