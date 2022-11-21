@@ -14,7 +14,7 @@ pipeline {
     stage('clean install') {
       steps {
         bat '''
-          mvn clean install-Dmaven.test.skip
+          mvn clean install -Dmaven.test.skip
         '''
       }
     }
