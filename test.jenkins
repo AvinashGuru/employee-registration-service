@@ -21,7 +21,7 @@ pipeline {
      stage('deploy') {
       steps {
         bat '''
-          java -jar target\emp-reg-service-0.0.1-SNAPSHOT.jar
+          java -jar target/emp-reg-service-0.0.1-SNAPSHOT.jar
         '''
       }
     }
