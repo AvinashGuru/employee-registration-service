@@ -18,5 +18,13 @@ pipeline {
         '''
       }
     }
+     stage('deploy') {
+      steps {
+        bat '''
+          cd .\target\
+          java -jar .\emp-reg-service-0.0.1-SNAPSHOT.jar
+        '''
+      }
+    }
   }
 }
