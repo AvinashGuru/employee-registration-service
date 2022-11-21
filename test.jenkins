@@ -24,7 +24,10 @@ pipeline {
           npx kill-port 8080
         '''
          bat '''
-          start.bat
+          del test.out
+        '''
+        bat '''
+          start /b java -jar target/emp-reg-service-0.0.1-SNAPSHOT.jar >> test.out
         '''
       }
     }
